@@ -6,20 +6,37 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
 
+    public static String TAG = "MainActivity";
     private Context context;
+
+    private TextView scanResults;
+    private Button scanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
 
-        isNetworkAvailable(context);
+        init();
+
+     //   isNetworkAvailable(context);
+     //  scanButton();
+    }
+
+    // initialize components
+    public void init(){
+        context = this;
+        scanResults = findViewById(R.id.scanResults);
+        scanButton = findViewById(R.id.scanButton);
     }
 
     // check internet
@@ -45,5 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         return isConnected;
+    }
+
+    // press button to scan wifi
+    public void scanButton(){
+
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v(TAG, "Test Button");
+            }
+        });
+
     }
 }
