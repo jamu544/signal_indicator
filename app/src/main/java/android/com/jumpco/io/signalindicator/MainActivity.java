@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView scanResults;
     private Button scanButton;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     // initialize components
     public void init(){
-        context = this;
+        context = SignalIndicatorApplication.appContext;
         scanResults = findViewById(R.id.scanResults);
         scanButton = findViewById(R.id.scanButton);
     }
@@ -43,30 +45,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean isNetworkAvailable(Context context){
         boolean isConnected = false;
 
+        // GET network connection from Android
         ConnectivityManager connectionManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        // GET list of networks available n Android
         NetworkInfo[] allNetworkInfo = connectionManager.getAllNetworkInfo();
 
         for (NetworkInfo networkInfoList : allNetworkInfo) {
             if(networkInfoList.getTypeName().equalsIgnoreCase("WIFI")){
                 isConnected = true;
-                Toast.makeText(context,"Network Available " +isConnected,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Network Available Wifi " +isConnected,Toast.LENGTH_SHORT).show();
+            }
+            else if (networkInfoList.getTypeName().equalsIgnoreCase("MOBILE")){
+                isConnected = true;
+                Toast.makeText(context,"Network Available MOBILE " +isConnected,Toast.LENGTH_SHORT).show();
             }
             else {
                 isConnected = false;
                 Toast.makeText(context,"No Network Available "+isConnected,Toast.LENGTH_SHORT).show();
-
             }
-
         }
-
-
         return isConnected;
     }
 
     // press button to scan wifi
     public void scanButton(){
-
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
