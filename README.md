@@ -15,8 +15,9 @@ Clone this respository and import into **Android Studio**
 git@github.com:jamu544/signal_indicator.git'''
 
 ## External Dependencies
-implementation "com.squareup.retrofit2:retrofit:2.9.0
-implementation "com.squareup.retrofit2:converter-gson:2.5.0
+implementation com.squareup.retrofit2:retrofit:2.9.0
+
+implementation com.squareup.retrofit2:converter-gson:2.5.0
 
 
 ## Permissions
