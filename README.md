@@ -23,6 +23,10 @@ git@github.com:jamu544/signal_indicator.git'''
 https://developer.android.com/guide/topics/connectivity/wifi-scan
 You can use the Wi-Fi scanning capabilities provided by the WifiManager API to get a list of Wi-Fi access points that are visible from the device.
 
+## Sample App
+
+The app has some simple UI screen and uses. This is just an example of what the app does.
+
 
 
 
