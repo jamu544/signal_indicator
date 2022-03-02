@@ -4,6 +4,8 @@ Android application that retrieves the RSSI(Received Signal Strength Indicator) 
 environment and reports this reading to an imaginary API.
 
 # Get Started
+## Overview 
+
 
 ## Installation 
 
@@ -21,7 +23,6 @@ implementation "com.squareup.retrofit2:converter-gson:2.5.0"
 <!--    To perform network operations in your application, your manifest must include the following permissions:-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name = "android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name = "android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name = "android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -30,8 +31,12 @@ implementation "com.squareup.retrofit2:converter-gson:2.5.0"
 
 
 ## Code snippets
-https://developer.android.com/guide/topics/connectivity/wifi-scan
+https://developer.android.com/guide/topics/connectivity/wifi-scan:
 You can use the Wi-Fi scanning capabilities provided by the WifiManager API to get a list of Wi-Fi access points that are visible from the device.
+
+https://developer.android.com/guide/topics/ui/layout/recyclerview:
+RecyclerView makes it easy to efficiently display large sets of data. You supply the data and define how each item looks, and the RecyclerView library dynamically creates the elements when they're needed.
+
 
 ## Sample App
 
