@@ -7,5 +7,6 @@ environment and reports this reading to an imaginary API.
 
 Clone this respository and import into **Android Studio**
 
-'''git@github.com:jamu544/signal_indicator.git'''
+'''bash
+git@github.com:jamu544/signal_indicator.git'''
 
