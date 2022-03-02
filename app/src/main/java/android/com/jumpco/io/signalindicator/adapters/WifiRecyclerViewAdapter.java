@@ -34,8 +34,8 @@ public class WifiRecyclerViewAdapter extends RecyclerView.Adapter<WifiRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WifiModel pojo = list.get(position);
-        holder.nameTextView.setText(pojo.name);
-        holder.wifiStrengthTextView.setText(String.valueOf(pojo.wifiStrength)+" dBm");
+        holder.nameTextView.setText(pojo.getName());
+        holder.wifiStrengthTextView.setText(String.valueOf(pojo.getWifiStrength())+" dBm");
     }
 
     /**

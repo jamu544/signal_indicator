@@ -40,8 +40,8 @@ public class WifiReceiver extends BroadcastReceiver {
 
             for (ScanResult scanResult : wifiList) {
                 pojo = new WifiModel();
-                pojo.name = scanResult.SSID;
-                pojo.wifiStrength = scanResult.level;
+                pojo.setName(scanResult.SSID);
+                pojo.setWifiStrength(scanResult.level);
 
                 deviceWifiList.add(pojo);
             }
