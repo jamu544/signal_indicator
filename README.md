@@ -5,6 +5,8 @@ environment and reports this reading to an imaginary API.
 
 # Get Started
 ## Overview 
+The application scans and retrives wifi in your location.
+And the list of wireless netwroks is then sent through the server via POST protocol
 
 
 ## Installation 
