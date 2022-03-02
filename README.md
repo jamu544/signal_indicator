@@ -11,8 +11,7 @@ environment and reports this reading to an imaginary API.
 
 Clone this respository and import into **Android Studio**
 
-'''bash
-git@github.com:jamu544/signal_indicator.git'''
+git@github.com:jamu544/signal_indicator.git
 
 ## External Dependencies
 implementation com.squareup.retrofit2:retrofit:2.9.0
