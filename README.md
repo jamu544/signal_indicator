@@ -25,7 +25,7 @@ You can use the Wi-Fi scanning capabilities provided by the WifiManager API to g
 
 ## Sample App
 
-The app has some simple UI screen and uses. This is just an example of what the app does.
+The app has a simple UI screen and is just an example of what the app does.
 
 
 
