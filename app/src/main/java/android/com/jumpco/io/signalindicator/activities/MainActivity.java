@@ -1,20 +1,23 @@
-package android.com.jumpco.io.signalindicator;
+package android.com.jumpco.io.signalindicator.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.com.jumpco.io.signalindicator.utils.NetworkUtil;
+import android.com.jumpco.io.signalindicator.R;
+import android.com.jumpco.io.signalindicator.SignalIndicatorApplication;
+import android.com.jumpco.io.signalindicator.utils.WifiReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 1;
     private WifiReceiver receiverWifi;
 
-    ListView wifiListView;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
     // initialize components
     public void init(){
         context = SignalIndicatorApplication.appContext;
-        wifiListView = findViewById(R.id.scanResultsList);
+        recyclerView = findViewById(R.id.scanResultsList);
         scanButton = findViewById(R.id.postButton);
         wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
     @Override
     protected void onResume() {
         super.onResume();
-        receiverWifi = new WifiReceiver(wifiManager, wifiListView);
+        receiverWifi = new WifiReceiver(wifiManager, recyclerView);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(receiverWifi, intentFilter);

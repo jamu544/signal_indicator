@@ -1,6 +1,6 @@
-package android.com.jumpco.io.signalindicator;
+package android.com.jumpco.io.signalindicator.model;
 
-public class WifiConnectionPojo {
+public class WifiModel {
     public String name;
     public int wifiStrength;
 

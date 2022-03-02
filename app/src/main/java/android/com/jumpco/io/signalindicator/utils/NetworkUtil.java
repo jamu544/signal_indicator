@@ -1,4 +1,4 @@
-package android.com.jumpco.io.signalindicator;
+package android.com.jumpco.io.signalindicator.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
