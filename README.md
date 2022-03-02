@@ -13,10 +13,20 @@ Clone this respository and import into **Android Studio**
 git@github.com:jamu544/signal_indicator.git'''
 
 ## External Dependencies
-
+implementation "com.squareup.retrofit2:retrofit:2.9.0"
+implementation "com.squareup.retrofit2:converter-gson:2.5.0"
 
 
 ## Permissions
+<!--    To perform network operations in your application, your manifest must include the following permissions:-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name = "android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name = "android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name = "android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
 
 ## Code snippets
