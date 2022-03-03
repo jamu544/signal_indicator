@@ -20,10 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class WifiReceiver extends BroadcastReceiver {
     WifiManager wifiManager;
-
     WifiModel pojo;
-
     RecyclerView wifiDeviceList;
+
     public WifiReceiver(WifiManager wifiManager,  RecyclerView wifiDeviceList) {
         this.wifiManager = wifiManager;
         this.wifiDeviceList = wifiDeviceList;
@@ -52,6 +51,11 @@ public class WifiReceiver extends BroadcastReceiver {
             arrayAdapter.notifyDataStateChanged();
 
             wifiDeviceList.setAdapter(arrayAdapter);
+
+            NetworkUtil.createWifiJsonFile(pojo);
+
+
+
 
         }
 

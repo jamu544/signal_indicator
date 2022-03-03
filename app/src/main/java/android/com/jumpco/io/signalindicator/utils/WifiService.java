@@ -2,9 +2,14 @@ package android.com.jumpco.io.signalindicator.utils;
 
 import android.com.jumpco.io.signalindicator.model.WifiModel;
 
-public interface RetrofitAPI {
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
-   // @POST("wifis")
+public interface WifiService {
+
+    @POST("wifis")
+    Call<WifiModel> createWifi(@Body WifiModel comment);
 
 
     //funtion to post data

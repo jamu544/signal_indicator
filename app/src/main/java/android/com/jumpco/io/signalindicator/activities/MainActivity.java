@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,12 +43,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+
+
+//        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "city.json");
+//        listView.setAdapter(new CityAdapter(Utils.getListOfCities(jsonFileString), this));
+//        System.out.println("weather data ====  " + jsonFileString);
     }
     // initialize components
     public void init(){
         context = SignalIndicatorApplication.appContext;
         recyclerView = findViewById(R.id.scanResultsList);
-        scanButton = findViewById(R.id.postButton);
+        scanButton = findViewById(R.id.scanButton);
         wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
     @Override
@@ -70,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(MainActivity.this, "Please turn on Wifi and try again", Toast.LENGTH_SHORT).show();
         }
+
+        Log.d("Wifi Obj in",NetworkUtil.readFromSDFile().toString());
     }
 
     @Override

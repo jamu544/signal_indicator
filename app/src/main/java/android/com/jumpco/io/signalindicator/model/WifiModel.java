@@ -1,8 +1,20 @@
 package android.com.jumpco.io.signalindicator.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class WifiModel {
+    @SerializedName("name")
     private String name;
+    @SerializedName("wifiStrength")
     private int wifiStrength;
+
+    public WifiModel() {
+    }
+
+    public WifiModel(String name, int wifiStrength) {
+        this.name = name;
+        this.wifiStrength = wifiStrength;
+    }
 
     public String getName() {
         return name;
