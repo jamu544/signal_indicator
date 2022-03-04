@@ -61,7 +61,7 @@ public class NetworkUtil {
 
     // read wifi json file from external Storage
     public static WifiModel readFromSDFile() {
-        WifiModel wifiObject = null;
+        WifiModel wifiObject = new WifiModel();
         String data = null;
         try {
             File root = new File(Environment.getExternalStorageDirectory(), WIFI_SIGNAL_FOLDER);
