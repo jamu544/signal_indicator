@@ -33,16 +33,16 @@ public class WifiReceiver extends BroadcastReceiver {
     WifiModel pojo;
     RecyclerView wifiDeviceList;
 
-    public WifiReceiver(WifiManager wifiManager,  RecyclerView wifiDeviceList) {
+    public WifiReceiver(WifiManager wifiManager, RecyclerView wifiDeviceList) {
         this.wifiManager = wifiManager;
         this.wifiDeviceList = wifiDeviceList;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-         String action = intent.getAction();
+        String action = intent.getAction();
 
-        if(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equalsIgnoreCase(action)){
+        if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equalsIgnoreCase(action)) {
 
             List<ScanResult> wifiList = wifiManager.getScanResults();
             ArrayList<WifiModel> deviceWifiList = new ArrayList<>();
@@ -58,7 +58,7 @@ public class WifiReceiver extends BroadcastReceiver {
 
                     objectObje.put("name", pojo.getName());
                     objectObje.put("wifiFrequency", pojo.getWifiStrength());
-//
+
                     data.put(objectObje);
                     deviceWifiList.add(pojo);
 
@@ -71,28 +71,12 @@ public class WifiReceiver extends BroadcastReceiver {
                 arrayAdapter.notifyDataStateChanged();
 
                 wifiDeviceList.setAdapter(arrayAdapter);
-                NetworkUtil.createWifiJsonFile(pojo);
+                NetworkUtil.writeDatatoJsonFile(data);//write data to json file
 
-
-                File root = new File(Environment.getExternalStorageDirectory(), NetworkUtil.WIFI_SIGNAL_FOLDER);
-                if (!root.exists()) {
-                    root.mkdirs();
-                }
-                File gpxfile = new File(root, NetworkUtil.WIFI_JSON_FILE);
-                FileWriter writer = new FileWriter(gpxfile);
-                writer.append(data.toString());
-                writer.flush();
-                writer.close();
-                Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
-            }catch (JSONException r) {
-                r.getMessage();
-            }
-            catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
-
     }
+
 }

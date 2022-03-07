@@ -1,5 +1,6 @@
 package android.com.jumpco.io.signalindicator.utils;
 
+import android.com.jumpco.io.signalindicator.SignalIndicatorApplication;
 import android.com.jumpco.io.signalindicator.activities.MainActivity;
 import android.com.jumpco.io.signalindicator.model.WifiModel;
 import android.content.Context;
@@ -19,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -90,7 +92,7 @@ public class NetworkUtil {
     }
 
     // Get the dir of Storage
-    public static String getTextFileData(String fileName) {
+    public static String readDataFromJsonFile(String fileName) {
 
         File sdCardDir = new File(Environment.getExternalStorageDirectory(), NetworkUtil.WIFI_SIGNAL_FOLDER);
 
@@ -102,9 +104,7 @@ public class NetworkUtil {
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(txtFile));
-
             String line;
-
             while ((line = reader.readLine()) != null) {
                 text.append(line + '\n');
             }
@@ -113,6 +113,26 @@ public class NetworkUtil {
             Log.e(MainActivity.TAG, "Error occured while reading text file!!");
         }
         return text.toString();
+    }
+
+    // write the list of wireless networks to a file
+    public static void writeDatatoJsonFile(JSONArray jsonArray){
+        File root = new File(Environment.getExternalStorageDirectory(), NetworkUtil.WIFI_SIGNAL_FOLDER);
+        if (!root.exists()) {
+            root.mkdirs();
+        }
+        File gpxfile = new File(root, NetworkUtil.WIFI_JSON_FILE);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(gpxfile);
+            writer.append(jsonArray.toString());
+            writer.flush();
+            writer.close();
+            Log.d("Write to File",jsonArray.toString());
+            Toast.makeText(SignalIndicatorApplication.appContext, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
 }

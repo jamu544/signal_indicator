@@ -16,21 +16,10 @@ import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -137,8 +126,8 @@ public class MainActivity extends AppCompatActivity {
     // POST data to the server
     public void postDatainJsonFormat(View view) {
         //NetworkUtil.readFromSDFile();
-        Log.d("JSON POST", NetworkUtil.getTextFileData(NetworkUtil.WIFI_JSON_FILE)+" check " );
-        Toast.makeText(MainActivity.this, "POST"+NetworkUtil.getTextFileData("WIFI_JSON_FILE.txt") , Toast.LENGTH_SHORT).show();
+        Log.d("JSON POST", NetworkUtil.readDataFromJsonFile(NetworkUtil.WIFI_JSON_FILE)+" check " );
+        Toast.makeText(MainActivity.this, "POST"+NetworkUtil.readDataFromJsonFile("WIFI_JSON_FILE.txt") , Toast.LENGTH_SHORT).show();
     }
 
 
