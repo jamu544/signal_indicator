@@ -3,9 +3,12 @@ package android.com.jumpco.io.signalindicator.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.com.jumpco.io.signalindicator.adapters.WifiRecyclerViewAdapter;
+import android.com.jumpco.io.signalindicator.model.WifiModel;
 import android.com.jumpco.io.signalindicator.utils.NetworkUtil;
 import android.com.jumpco.io.signalindicator.R;
 import android.com.jumpco.io.signalindicator.SignalIndicatorApplication;
@@ -13,13 +16,18 @@ import android.com.jumpco.io.signalindicator.utils.WifiReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("JSON POST", NetworkUtil.readDataFromJsonFile(NetworkUtil.WIFI_JSON_FILE)+" check " );
         Toast.makeText(MainActivity.this, "POST"+NetworkUtil.readDataFromJsonFile("WIFI_JSON_FILE.txt") , Toast.LENGTH_SHORT).show();
     }
+
+
+
 
 
 

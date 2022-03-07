@@ -36,13 +36,9 @@ public class NetworkUtil {
 
     public final static String WIFI_JSON_FILE2 = "wifill.txt";
 
-    // Find the root of the external storage.
-    // See http://developer.android.com/guide/topics/data/data-
-    // storage.html#filesExternal
+    // find the root of the external storage.
     public static void createWifiJsonFile(WifiModel wifiModel) {
         try {
-
-
             File root = new File(Environment.getExternalStorageDirectory(), WIFI_SIGNAL_FOLDER);
             root.mkdirs();
             // File root = android.os.Environment.getExternalFilesDir();
@@ -129,7 +125,6 @@ public class NetworkUtil {
             writer.flush();
             writer.close();
             Log.d("Write to File",jsonArray.toString());
-            Toast.makeText(SignalIndicatorApplication.appContext, "Saved", Toast.LENGTH_SHORT).show();
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }

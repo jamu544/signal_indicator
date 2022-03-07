@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
@@ -29,9 +30,14 @@ import androidx.recyclerview.widget.RecyclerView;
 // broadcast receiver will keep track of when internet changes
 
 public class WifiReceiver extends BroadcastReceiver {
-    WifiManager wifiManager;
-    WifiModel pojo;
-    RecyclerView wifiDeviceList;
+    public WifiManager wifiManager;
+
+    public RecyclerView wifiDeviceList;
+    public WifiRecyclerViewAdapter arrayAdapter;
+
+    public WifiReceiver(){
+
+    }
 
     public WifiReceiver(WifiManager wifiManager, RecyclerView wifiDeviceList) {
         this.wifiManager = wifiManager;
@@ -44,9 +50,62 @@ public class WifiReceiver extends BroadcastReceiver {
 
         if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equalsIgnoreCase(action)) {
 
+           new BackgroundTask().execute();
+
+
+//            WifiModel pojo = new WifiModel();
+//            List<ScanResult> wifiList = wifiManager.getScanResults();
+//            ArrayList<WifiModel> deviceWifiList = new ArrayList<>();
+//
+//            JSONArray data = new JSONArray();
+//
+//            try {
+//                for (ScanResult scanResult : wifiList) {
+//                    JSONObject objectObje = new JSONObject();
+//                    pojo = new WifiModel();
+//                    pojo.setName(scanResult.SSID);
+//                    pojo.setWifiStrength(scanResult.level);
+//
+//                    objectObje.put("name", pojo.getName());
+//                    objectObje.put("wifiFrequency", pojo.getWifiStrength());
+//
+//                    data.put(objectObje);
+//                    deviceWifiList.add(pojo);
+//
+//                }
+//                Log.v("Scan Results: ", deviceWifiList.toString());
+//                Log.v("Scan Results: in JSON  ", data.toString());
+//
+//                WifiRecyclerViewAdapter arrayAdapter = new WifiRecyclerViewAdapter(SignalIndicatorApplication.appContext, deviceWifiList);
+//                wifiDeviceList.setLayoutManager(new LinearLayoutManager(SignalIndicatorApplication.appContext));
+//                arrayAdapter.notifyDataStateChanged();
+//
+//                wifiDeviceList.setAdapter(arrayAdapter);
+//                NetworkUtil.writeDatatoJsonFile(data);//write data to json file
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+        }
+        }
+
+    private  class BackgroundTask extends AsyncTask<Void,Void,Void> {
+        //
+//
+//
+//
+
+//
+//        /**
+//         * @param strings
+//         * @deprecated
+//         */
+//        @Override
+        protected Void doInBackground(Void... strings) {
+
+            WifiModel pojo = new WifiModel();
             List<ScanResult> wifiList = wifiManager.getScanResults();
             ArrayList<WifiModel> deviceWifiList = new ArrayList<>();
-
             JSONArray data = new JSONArray();
 
             try {
@@ -61,22 +120,34 @@ public class WifiReceiver extends BroadcastReceiver {
 
                     data.put(objectObje);
                     deviceWifiList.add(pojo);
-
                 }
                 Log.v("Scan Results: ", deviceWifiList.toString());
                 Log.v("Scan Results: in JSON  ", data.toString());
 
-                WifiRecyclerViewAdapter arrayAdapter = new WifiRecyclerViewAdapter(SignalIndicatorApplication.appContext, deviceWifiList);
-                wifiDeviceList.setLayoutManager(new LinearLayoutManager(SignalIndicatorApplication.appContext));
-                arrayAdapter.notifyDataStateChanged();
+                arrayAdapter = new WifiRecyclerViewAdapter(SignalIndicatorApplication.appContext, deviceWifiList);
 
-                wifiDeviceList.setAdapter(arrayAdapter);
                 NetworkUtil.writeDatatoJsonFile(data);//write data to json file
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            return null;
+    }
+
+        /**
+         * @param unused
+         * @deprecated
+         */
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            wifiDeviceList.setLayoutManager(new LinearLayoutManager(SignalIndicatorApplication.appContext));
+            arrayAdapter.notifyDataStateChanged();
+
+            wifiDeviceList.setAdapter(arrayAdapter);
         }
     }
 
+
+//
 }
