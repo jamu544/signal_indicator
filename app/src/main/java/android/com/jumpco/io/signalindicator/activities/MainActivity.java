@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private Button scanButton;
     private Button postDataButton;
 
-
-
 //    private List<String> wifiList;
     private WifiManager wifiManager;
     private final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 1;
@@ -52,16 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
-
-
-
-
-
-
- //       String jsonFileString = NetworkUtil.getJsonFromAssets(getApplicationContext(), "wifi.json");
-//        listView.setAdapter(new CityAdapter(Utils.getListOfCities(jsonFileString), this));
-       // System.out.println("weather data ====  " + file);
     }
     // initialize components
     public void init(){
@@ -98,12 +86,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(MainActivity.this, "Please turn on Wifi and try again", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
     }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -137,10 +120,5 @@ public class MainActivity extends AppCompatActivity {
         Log.d("JSON POST", NetworkUtil.readDataFromJsonFile(NetworkUtil.WIFI_JSON_FILE)+" check " );
         Toast.makeText(MainActivity.this, "POST"+NetworkUtil.readDataFromJsonFile("WIFI_JSON_FILE.txt") , Toast.LENGTH_SHORT).show();
     }
-
-
-
-
-
 
 }

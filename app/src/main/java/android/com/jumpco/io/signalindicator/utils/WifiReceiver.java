@@ -52,55 +52,11 @@ public class WifiReceiver extends BroadcastReceiver {
 
            new BackgroundTask().execute();
 
-
-//            WifiModel pojo = new WifiModel();
-//            List<ScanResult> wifiList = wifiManager.getScanResults();
-//            ArrayList<WifiModel> deviceWifiList = new ArrayList<>();
-//
-//            JSONArray data = new JSONArray();
-//
-//            try {
-//                for (ScanResult scanResult : wifiList) {
-//                    JSONObject objectObje = new JSONObject();
-//                    pojo = new WifiModel();
-//                    pojo.setName(scanResult.SSID);
-//                    pojo.setWifiStrength(scanResult.level);
-//
-//                    objectObje.put("name", pojo.getName());
-//                    objectObje.put("wifiFrequency", pojo.getWifiStrength());
-//
-//                    data.put(objectObje);
-//                    deviceWifiList.add(pojo);
-//
-//                }
-//                Log.v("Scan Results: ", deviceWifiList.toString());
-//                Log.v("Scan Results: in JSON  ", data.toString());
-//
-//                WifiRecyclerViewAdapter arrayAdapter = new WifiRecyclerViewAdapter(SignalIndicatorApplication.appContext, deviceWifiList);
-//                wifiDeviceList.setLayoutManager(new LinearLayoutManager(SignalIndicatorApplication.appContext));
-//                arrayAdapter.notifyDataStateChanged();
-//
-//                wifiDeviceList.setAdapter(arrayAdapter);
-//                NetworkUtil.writeDatatoJsonFile(data);//write data to json file
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
         }
         }
 
     private  class BackgroundTask extends AsyncTask<Void,Void,Void> {
-        //
-//
-//
-//
-
-//
-//        /**
-//         * @param strings
-//         * @deprecated
-//         */
-//        @Override
+        @Override
         protected Void doInBackground(Void... strings) {
 
             WifiModel pojo = new WifiModel();
@@ -147,7 +103,4 @@ public class WifiReceiver extends BroadcastReceiver {
             wifiDeviceList.setAdapter(arrayAdapter);
         }
     }
-
-
-//
 }
