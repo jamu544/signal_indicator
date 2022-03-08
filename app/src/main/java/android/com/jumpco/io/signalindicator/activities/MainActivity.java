@@ -16,6 +16,7 @@ import android.com.jumpco.io.signalindicator.utils.WifiReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -50,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+
+        NetworkUtil.isNetworkAvailable(context);
+
+
+
     }
     // initialize components
     public void init(){
@@ -59,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         postDataButton = findViewById(R.id.postButton);
         wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -66,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
         registerReceiver(receiverWifi, intentFilter);
-
-        if(NetworkUtil.isNetworkAvailable(context)) {
 
             scanButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,10 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        else {
-            Toast.makeText(MainActivity.this, "Please turn on Wifi and try again", Toast.LENGTH_SHORT).show();
-        }
-    }
+
     @Override
     protected void onPause() {
         super.onPause();

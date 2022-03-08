@@ -1,6 +1,7 @@
 package android.com.jumpco.io.signalindicator.adapters;
 
 import android.com.jumpco.io.signalindicator.R;
+import android.com.jumpco.io.signalindicator.databinding.ListItemBinding;
 import android.com.jumpco.io.signalindicator.model.WifiModel;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -34,8 +35,8 @@ public class WifiRecyclerViewAdapter extends RecyclerView.Adapter<WifiRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WifiModel pojo = list.get(position);
-        holder.nameTextView.setText(pojo.getName());
-        holder.wifiStrengthTextView.setText(String.valueOf(pojo.getWifiStrength())+" dBm");
+        holder.nameTextView.setText(pojo.name);
+        holder.wifiStrengthTextView.setText(String.valueOf(pojo.wifiStrength)+" dBm");
     }
 
     /**
@@ -52,10 +53,11 @@ public class WifiRecyclerViewAdapter extends RecyclerView.Adapter<WifiRecyclerVi
         notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
         private TextView wifiStrengthTextView;
 
+        private ListItemBinding listItemBinding;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

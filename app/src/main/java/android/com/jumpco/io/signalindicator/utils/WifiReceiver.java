@@ -1,5 +1,6 @@
 package android.com.jumpco.io.signalindicator.utils;
 
+import android.app.ProgressDialog;
 import android.com.jumpco.io.signalindicator.SignalIndicatorApplication;
 import android.com.jumpco.io.signalindicator.activities.MainActivity;
 import android.com.jumpco.io.signalindicator.adapters.WifiRecyclerViewAdapter;
@@ -35,6 +36,9 @@ public class WifiReceiver extends BroadcastReceiver {
     public RecyclerView wifiDeviceList;
     public WifiRecyclerViewAdapter arrayAdapter;
 
+
+
+
     public WifiReceiver(){
 
     }
@@ -56,6 +60,22 @@ public class WifiReceiver extends BroadcastReceiver {
         }
 
     private  class BackgroundTask extends AsyncTask<Void,Void,Void> {
+
+        private ProgressDialog progressDialog;
+
+
+        /**
+         * @deprecated
+         */
+        @Override
+        protected void onPreExecute() {
+
+//            progressDialog = new ProgressDialog(SignalIndicatorApplication.appContext);
+//            progressDialog.setMessage("Loading networks...");
+//            progressDialog.show();
+            super.onPreExecute();
+        }
+
         @Override
         protected Void doInBackground(Void... strings) {
 
@@ -68,11 +88,11 @@ public class WifiReceiver extends BroadcastReceiver {
                 for (ScanResult scanResult : wifiList) {
                     JSONObject objectObje = new JSONObject();
                     pojo = new WifiModel();
-                    pojo.setName(scanResult.SSID);
-                    pojo.setWifiStrength(scanResult.level);
+                    pojo.name = scanResult.SSID;
+                    pojo.wifiStrength = scanResult.level;
 
-                    objectObje.put("name", pojo.getName());
-                    objectObje.put("wifiFrequency", pojo.getWifiStrength());
+                    objectObje.put("name", pojo.name);
+                    objectObje.put("wifiFrequency", pojo.wifiStrength);
 
                     data.put(objectObje);
                     deviceWifiList.add(pojo);
@@ -97,10 +117,16 @@ public class WifiReceiver extends BroadcastReceiver {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
+//            if (progressDialog != null)
+//            {
+//                progressDialog.dismiss();
+//            }
             wifiDeviceList.setLayoutManager(new LinearLayoutManager(SignalIndicatorApplication.appContext));
             arrayAdapter.notifyDataStateChanged();
 
             wifiDeviceList.setAdapter(arrayAdapter);
+
+
         }
     }
 }

@@ -29,13 +29,10 @@ import java.util.ArrayList;
 
 public class NetworkUtil {
 
-
-
     public final static String WIFI_SIGNAL_FOLDER = "wifi_signal_folder";
     public final static String WIFI_JSON_FILE = "wifi.txt";
 
     public final static String WIFI_JSON_FILE2 = "wifill.txt";
-
     // find the root of the external storage.
     public static void createWifiJsonFile(WifiModel wifiModel) {
         try {
@@ -43,10 +40,8 @@ public class NetworkUtil {
             root.mkdirs();
             // File root = android.os.Environment.getExternalFilesDir();
             JSONObject json = new JSONObject();
-            json.put("name", wifiModel.getName());
-            json.put("wifiStrength", wifiModel.getWifiStrength());
-            // See
-            // http://stackoverflow.com/questions/3551821/android-write-to-sd-card-folder
+            json.put("name", wifiModel.name);
+            json.put("wifiStrength", wifiModel.wifiStrength);
             final File dir = new File(root, WIFI_JSON_FILE2);
             if (!dir.exists())
                 dir.mkdirs();
@@ -65,7 +60,6 @@ public class NetworkUtil {
         }
     }
 
-
     // check internet
     public static boolean isNetworkAvailable(Context context){
         boolean isConnected = false;
@@ -80,16 +74,20 @@ public class NetworkUtil {
             if(networkInfoList.getTypeName().equalsIgnoreCase("WIFI")){
                 isConnected = true;
                 Log.d("Check Internet ",isConnected+" " );
+                return isConnected;
              //   Toast.makeText(context,"Network Available Wifi " +isConnected,Toast.LENGTH_SHORT).show();
+            }
+            else {
+                isConnected = false;
+                Log.d("Check Internet ",isConnected+" " );
             }
 
         }
         return isConnected;
     }
 
-    // Get the dir of Storage
+    // get storage directory and write data to the file
     public static String readDataFromJsonFile(String fileName) {
-
         File sdCardDir = new File(Environment.getExternalStorageDirectory(), NetworkUtil.WIFI_SIGNAL_FOLDER);
 
         // Get The Text file
