@@ -43,6 +43,7 @@ RecyclerView makes it easy to efficiently display large sets of data. You supply
 ## Sample App
 
 The app has a simple UI screen and is just an example of what the app does.
+![GitHub Logo](/screen_one.png)
 
 
 
